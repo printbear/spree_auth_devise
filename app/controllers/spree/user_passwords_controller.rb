@@ -42,4 +42,18 @@ class Spree::UserPasswordsController < Devise::PasswordsController
     end
   end
 
+  def edit
+    if invalid_reset_token?(params[:reset_password_token])
+      set_flash_message(:error, :invalid_token)
+      redirect_to spree.login_path
+    else
+      super
+    end
+  end
+
+  private
+    def invalid_reset_token?(token)
+      resource_with_token = resource_class.find :first, conditions: {reset_password_token: token}
+      resource_with_token.nil? || !resource_with_token.reset_password_period_valid?
+    end
 end
