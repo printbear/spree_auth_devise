@@ -32,6 +32,7 @@ en:
       spree_user:
         cannot_be_blank: Your password cannot be blank.
         send_instructions: You will receive an email with instructions about how to reset your password in a few minutes.
+        invalid_token: Given password reset token is either invalid or expired.
         updated: Your password was changed successfully. You are now signed in.
     user_registrations:
       destroyed: Bye! Your account was successfully cancelled. We hope to see you again soon.
